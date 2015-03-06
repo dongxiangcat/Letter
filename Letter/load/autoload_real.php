@@ -1,7 +1,7 @@
 <?php
 /**
  * Created by PhpStorm.
- * User: JOOMOO
+ * User: dongxiang
  * Date: 2015/2/6
  * Time: 17:45
  */
@@ -30,7 +30,14 @@ class AutoLoader
     {
         if(isset(self::$classMap[$class])){
             require self::$classMap[$class];
+        }else{
+            $filePath =  './'.str_replace('\\','/',$class).'.php';
+            if(file_exists($filePath)){
+                require($filePath);
+            }else{
+                //\Letter\core\Error::setError("控制器文件不存在");
+            }
         }
-        echo $class.'xxx';
+        //echo $class.'xxx<br />';
     }
 }
