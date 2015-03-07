@@ -42,6 +42,7 @@ class Application
             $action = Letter::$config['emptyAction'].'Action';
             $con->$action();
         }else{
+            $con->$action();
             trigger_error("action ".$action."不存在", E_USER_ERROR);
         }
 
@@ -53,5 +54,6 @@ class Application
             Letter::$config[$k] = $v;
         }
     }
+
 
 }

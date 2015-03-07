@@ -27,4 +27,5 @@ class Letter{
         return self::$alias[$classname];
     }
 
+
 }

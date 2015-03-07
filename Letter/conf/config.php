@@ -7,7 +7,7 @@
  */
 
 return [
-    'pathType'          => 1,       //0.普通模式   1.pathinfo模式
+    'pathType'          => 0,       //0.普通模式   1.pathinfo模式
     //普通模式
     'moduleSign'        => 'm',
     'controllerSign'    => 'c',

@@ -9,13 +9,15 @@
 namespace App\Home\Controller;
 
 
-class IndexController {
+use Letter\core\Controller;
+
+class IndexController extends Controller{
 
     public function homeAction(){
         echo "xxx";
     }
 
-    public function _emptyAction(){
+    public function _emptyAsction(){
         echo 'empty';
     }
 }
