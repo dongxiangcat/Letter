@@ -8,6 +8,7 @@
 namespace Letter\core;
 class Event{
 
+    public $handled = false;
 
     public static function trigger($name){}
 
