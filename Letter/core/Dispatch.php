@@ -20,7 +20,6 @@ class Dispatch
         $dispatchArr = array();
         $dispatchArr['controller'] = $controllerSpace;
         $dispatchArr['action'] = $actionSpace;
-
         return $dispatchArr;
 
     }
