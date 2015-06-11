@@ -25,6 +25,7 @@ class Application
         $dispatchArr = Dispatch::router();
         $controller = $dispatchArr['controller'];
         $action = $dispatchArr['action'];
+
         if(class_exists($controller)){
             $con = Letter::getClass($controller);
         }elseif(class_exists(Letter::$config['emptyController'].'Controller')){
@@ -33,7 +34,6 @@ class Application
         }else{
             trigger_error("控制器".$controller."不存在", E_USER_ERROR);
         }
-
         if(isset($con)&&method_exists($con,$action)){
             $con->$action();
         }elseif(isset($con)&&method_exists($con,Letter::$config['emptyAction'].'Action')){
@@ -42,7 +42,6 @@ class Application
         }else{
             trigger_error("action ".$action."不存在", E_USER_ERROR);
         }
-
     }
 
     public function init($config)

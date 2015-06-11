@@ -8,6 +8,8 @@
 
 namespace Letter\core;
 use Letter\core\Event;
+use Letter\core\Template;
+use Letter\Letter;
 
 class Controller {
     /**
@@ -23,10 +25,9 @@ class Controller {
     protected $_behaviors = array();
 
     /**
-     * 模版赋值集合
+     * 模版对象
      */
-    protected $_assign = array();
-
+    protected $_templateObj;
     /**
      * 初始化
      */
@@ -109,7 +110,7 @@ class Controller {
      */
     public function trigger($name,$event = null){
         if($event == null){
-            $event = new Event();
+            $event = Letter::getClass('Letter\core\Event');
         }
         //循环调用handler
         foreach($this->_events[$name] as $handler){
@@ -128,22 +129,26 @@ class Controller {
      * @param $value
      */
     public function assign($name,$value){
-
+        if(!$this->_templateObj){
+            $this->_templateObj = Letter::getClass('Letter\core\Template',array(),true);
+        }
+        $this->_templateObj->vals[$name] = $value;
     }
 
     /**
      * 选取模版
      */
-    public function display(){
-
+    public function display($template,$charset='utf-8'){
+        echo $this->fetch($template,$charset);
     }
 
     /**
      * 解析模版
      */
-    public function fetch(){
-
+    public function fetch($template = '',$charset){
+        $this->_templateObj = Letter::getClass('Letter\core\Template',array(),true);
+        $content = $this->_templateObj->fetch($template,$charset);
+        return $content;
     }
 
-
-} 
+}

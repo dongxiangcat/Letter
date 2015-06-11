@@ -53,6 +53,12 @@ class Router{
         self::$controller = isset($routerArr[1])?$routerArr[1]:Letter::$config['defaultController'];
         self::$action = isset($routerArr[2])?$routerArr[2]:Letter::$config['defaultAction'];
 
+
+        /* 设置 */
+        Letter::$config['Module'] = self::$module;
+        Letter::$config['Controller'] = self::$controller;
+        Letter::$config['Action'] = self::$action;
+
     }
 
 }

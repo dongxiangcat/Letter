@@ -14,7 +14,7 @@ use Letter\core\Event;
 class IndexController extends Controller{
 
     public function homeAction(){
-        echo "xxx";
+        $this->fetch();
     }
 
     public function indexAction(){
@@ -25,7 +25,7 @@ class IndexController extends Controller{
         $this->on('hello',function($event){
             echo 'bbb';
         });
-        $this->trigger('hello',$event);
+        $this->trigger('hello');
     }
 
     public function _emptyAction(){

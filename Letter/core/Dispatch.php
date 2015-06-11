@@ -13,11 +13,11 @@ class Dispatch
     public static function router()
     {
         Router::resolve();
-
         $controllerSpace = self::getControllerName(Router::$module,Router::$controller);
         $actionSpace = self::getActionName(Router::$action);
 
         $dispatchArr = array();
+        $dispatchArr['module'] = Router::$module;
         $dispatchArr['controller'] = $controllerSpace;
         $dispatchArr['action'] = $actionSpace;
         return $dispatchArr;

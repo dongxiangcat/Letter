@@ -21,4 +21,7 @@ return [
     'defaultModule'     => 'Home',
     'defaultController' => 'Index',
     'defaultAction'     => 'index',
+
+    'suffix'            => 'html',
+    'templateTpl'       => 'Tpl',
 ];
