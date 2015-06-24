@@ -24,4 +24,6 @@ return [
 
     'suffix'            => 'html',
     'templateTpl'       => 'Tpl',
+
+    'startTag'          => '<',
 ];

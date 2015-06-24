@@ -60,7 +60,7 @@ class Letter{
      * @param $arr
      * @return mixed
      */
-    public static function createStatic($classname,$arr)
+    public static function createStatic($classname,$arr = array())
     {
         $class = $classname::getInstance();
         foreach($arr as $k=>$v){

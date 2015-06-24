@@ -7,11 +7,9 @@
  */
 
 namespace Letter\core;
-use Letter\core\Event;
-use Letter\core\Template;
 use Letter\Letter;
 
-class Controller {
+class Controller extends Application{
     /**
      * 事件集合
      * @var array
@@ -28,15 +26,11 @@ class Controller {
      * 模版对象
      */
     protected $_templateObj;
+
     /**
      * 初始化
      */
     public function __init__(){}
-
-    /**
-     * 行为方法
-     */
-    public function behaviors(){return array();}
 
     /**
      * 构造函数
@@ -45,17 +39,6 @@ class Controller {
         $this->__init__();
     }
 
-    /**
-     * 魔术方法 __call
-     */
-    public function __call($method,$args){
-        //检测behaviors，实现代理模式
-        $res = $this->isBehaviorExists($method);
-        if($res!==false){
-            return $res;
-        }
-        return false;
-    }
 
     /**
      * 魔术方法 __set
@@ -71,23 +54,6 @@ class Controller {
         if(isset($this->_assign[$name])){
             return $this->_assign[$name];
         }else{
-            return false;
-        }
-    }
-
-    /**
-     * 调用的方法是否在behaviors中存在
-     */
-    public function isBehaviorExists($method){
-        if(!method_exists($this,'behaviors')){
-            return false;
-        }else{
-            $behaviors = $this->behaviors();
-            foreach($behaviors as $name=>$action){
-                if(method_exists($action(),$method)){
-                    return $action()->$method();
-                }
-            }
             return false;
         }
     }

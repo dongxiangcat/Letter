@@ -44,6 +44,46 @@ class Application
         }
     }
 
+    /**
+     * 魔术方法 __call
+     */
+    public function __call($method,$args){
+        //检测behaviors，实现代理模式
+        $res = $this->isBehaviorExists($method);
+        if($res!==false){
+            return $res;
+        }
+        return false;
+    }
+
+
+    /**
+     * 调用的方法是否在behaviors中存在
+     */
+    public function isBehaviorExists($method){
+        if(!method_exists($this,'behaviors')){
+            return false;
+        }else{
+            $behaviors = $this->_behaviors();
+            foreach($behaviors as $name=>$action){
+                if(method_exists($action(),$method)){
+                    return $action()->$method();
+                }
+            }
+            return false;
+        }
+    }
+
+    public function _behaviors(){
+        //$behaviors = $this->behaviors();
+        return [
+            'Letter/core/Function/Common'
+        ];
+    }
+
+    public function behaviors(){}
+
+
     public function init($config)
     {
         foreach($config as $k=>$v){

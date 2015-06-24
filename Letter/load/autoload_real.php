@@ -32,6 +32,7 @@ class AutoLoader
             require self::$classMap[$class];
         }else{
             $filePath =  './'.str_replace('\\','/',$class).'.php';
+
             if(file_exists($filePath)){
                 require($filePath);
             }else{
